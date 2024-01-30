@@ -1,0 +1,21 @@
+code[class*="language-"],
+pre[class*="language-"] {
+    @apply text-neutral-300;
+}
+
+.function { 
+    @apply text-blue-400;
+}
+.keyword {
+    @apply text-purple-500;
+}
+.operator {
+    @apply text-purple-400;
+}
+
+.selector {
+    @apply text-orange-400;
+}
+.property {
+    @apply text-green-400;
+}
