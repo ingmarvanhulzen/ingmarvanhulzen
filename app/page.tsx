@@ -73,7 +73,7 @@ function Project({
   title,
   children,
 }: {
-  href: URL;
+  href: string;
   title: string;
   children: ReactNode;
 }) {
@@ -116,6 +116,7 @@ export default function Page() {
           </div>
           <div
             className="absolute inset-0 grid grid-cols-5 grid-rows-3"
+            // @ts-ignore
             style={{ "--size": "1rem" }}
           >
             {Array.from({ length: 5 * 3 }).map((_, idx) => (
