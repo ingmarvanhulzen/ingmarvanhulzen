@@ -99,7 +99,7 @@ export default function Page() {
         <div className="w-full m-auto space-y-6 text-neutral-700 dark:text-neutral-50">
           <Banner />
           <h3 className="text-center text-xl md:text-3xl">
-            Software Engineer from the Utrecht
+            Software Engineer from Utrecht
           </h3>
         </div>
       </div>
