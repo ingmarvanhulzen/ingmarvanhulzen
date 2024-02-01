@@ -114,15 +114,11 @@ export default function Page() {
               fill
             />
           </div>
-          <div
-            className="absolute inset-0 grid grid-cols-5 grid-rows-3"
-            // @ts-ignore
-            style={{ "--size": "1rem" }}
-          >
+          <div className="absolute inset-0 grid grid-cols-5 grid-rows-3 [--size:0.5rem] md:[--size:0.75rem] lg:[--size:1rem]">
             {Array.from({ length: 5 * 3 }).map((_, idx) => (
               <div
                 key={idx}
-                className="relative before:absolute before:inset-4 before:rounded-2xl before:shadow-outer dark:text-neutral-500"
+                className="relative before:absolute before:inset-2 before:rounded before:shadow-outer dark:text-neutral-500 md:before:inset-3 md:before:rounded-xl lg:before:inset-4 lg:before:rounded-2xl"
               />
             ))}
           </div>
