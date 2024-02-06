@@ -90,15 +90,17 @@ function Project({
     <Link
       href={href}
       className="relative block rounded-2xl aspect-video overflow-hidden"
-      style={{
-        "--oldMin": oldMin, // start after 0.25
-        "--newRange": newRange, // position we want to animate to
-        "--oldRange": oldRange, // time of animation
-        "--newMin": newMin,
-        "--oldValue":
-          "min(max(var(--scroll-top), var(--oldMin)), var(--oldRange) + var(--oldMin))", // Clamp oldValue <= oldMin + oldRange
-        scale: `calc((var(--oldValue) - var(--oldMin)) * var(--newRange) / var(--oldRange) + var(--newMin))`,
-      }}
+      style={
+        {
+          "--oldMin": oldMin, // start after 0.25
+          "--newRange": newRange, // position we want to animate to
+          "--oldRange": oldRange, // time of animation
+          "--newMin": newMin,
+          "--oldValue":
+            "min(max(var(--scroll-top), var(--oldMin)), var(--oldRange) + var(--oldMin))", // Clamp oldValue <= oldMin + oldRange
+          scale: `calc((var(--oldValue) - var(--oldMin)) * var(--newRange) / var(--oldRange) + var(--newMin))`,
+        } as React.CSSProperties
+      }
     >
       {children}
       <div className="absolute inset-0 flex items-center justify-center bg-black/75">

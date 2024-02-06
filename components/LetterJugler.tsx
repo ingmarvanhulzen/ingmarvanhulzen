@@ -1,5 +1,5 @@
 "use client";
-import { ReactNode, createElement, useEffect, useRef } from "react";
+import { ReactNode, useEffect, useRef } from "react";
 
 function itterChilds(
   itter: number,
@@ -8,28 +8,28 @@ function itterChilds(
 ) {
   root.childNodes.forEach((child) => {
     if (child.nodeName == "#text") {
-      for (let index = 0; index < child.nodeValue.length; index++) {
+      for (let index = 0; index < child.nodeValue!.length; index++) {
         itter += 1;
 
         if (itter == position) {
           if (index > 0) {
             const start = document.createElement("span");
-            start.innerText = child.nodeValue.substr(0, index);
-            child.parentNode.insertBefore(start, child);
+            start.innerText = child.nodeValue!.substr(0, index);
+            child.parentNode!.insertBefore(start, child);
           }
 
           const highlight = document.createElement("span");
           highlight.classList.add("animate-bottom-to-top");
-          highlight.innerText = child.nodeValue[index];
-          child.parentNode.insertBefore(highlight, child);
+          highlight.innerText = child.nodeValue![index];
+          child.parentNode!.insertBefore(highlight, child);
 
-          if (index < child.nodeValue.length) {
+          if (index < child.nodeValue!.length) {
             const end = document.createElement("span");
-            end.innerText = child.nodeValue.substr(index + 1);
-            child.parentNode.insertBefore(end, child);
+            end.innerText = child.nodeValue!.substr(index + 1);
+            child.parentNode!.insertBefore(end, child);
           }
 
-          child.parentNode.removeChild(child);
+          child.parentNode!.removeChild(child);
         }
       }
     } else {
@@ -61,9 +61,7 @@ function LetterJuggler({
         letter = letters[position];
       }
 
-      console.log(letter, position);
-
-      itterChilds(-1, ref.current, position);
+      itterChilds(-1, ref.current!, position);
     }, 1000);
 
     return () => clearInterval(interval);
