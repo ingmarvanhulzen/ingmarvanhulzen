@@ -89,7 +89,7 @@ function Project({
   return (
     <Link
       href={href}
-      className="relative block rounded-2xl aspect-video overflow-hidden"
+      className="relative block rounded-2xl aspect-video overflow-hidden will-change-transform"
       style={
         {
           "--oldMin": oldMin, // start after 0.25
