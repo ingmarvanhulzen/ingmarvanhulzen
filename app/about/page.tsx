@@ -8,7 +8,7 @@ export default function Page() {
         <strong className="text-neutral-400">Software Engineer</strong> which
         loves to explore the{" "}
         <strong className="text-neutral-400">newest</strong> design trends and{" "}
-        <strong className="text-neutral-400">web</strong> technoligies. With lot
+        <strong className="text-neutral-400">web</strong> technologies. With lot
         {"’"}s of <strong className="text-neutral-400">experience</strong> in
         coding.
       </LetterJuggler>
