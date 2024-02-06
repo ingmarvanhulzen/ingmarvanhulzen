@@ -1,6 +1,7 @@
 import { ReactNode } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import ScrollContainer from "@/components/ScrollContainer";
 
 function Banner() {
   return (
@@ -72,15 +73,32 @@ function Project({
   href,
   title,
   children,
+  newMin,
+  oldMin,
+  newRange,
+  oldRange,
 }: {
   href: string;
   title: string;
   children: ReactNode;
+  newMin: number;
+  oldMin: number;
+  newRange: number;
+  oldRange: number;
 }) {
   return (
     <Link
       href={href}
       className="relative block rounded-2xl aspect-video overflow-hidden"
+      style={{
+        "--oldMin": oldMin, // start after 0.25
+        "--newRange": newRange, // position we want to animate to
+        "--oldRange": oldRange, // time of animation
+        "--newMin": newMin,
+        "--oldValue":
+          "min(max(var(--scroll-top), var(--oldMin)), var(--oldRange) + var(--oldMin))", // Clamp oldValue <= oldMin + oldRange
+        scale: `calc((var(--oldValue) - var(--oldMin)) * var(--newRange) / var(--oldRange) + var(--newMin))`,
+      }}
     >
       {children}
       <div className="absolute inset-0 flex items-center justify-center bg-black/75">
@@ -94,36 +112,75 @@ function Project({
 
 export default function Page() {
   return (
-    <main className="min-h-screen w-4/5 mx-auto max-w-screen-3xl">
-      <div className="flex items-center min-h-screen">
-        <div className="w-full m-auto space-y-6 text-neutral-700 dark:text-neutral-50">
-          <Banner />
-          <h3 className="text-center text-xl md:text-3xl">
-            Software Engineer from Utrecht
-          </h3>
+    <ScrollContainer
+      direction="top-down"
+      className="w-full min-h-screen max-h-screen overflow-y-auto overflow-x-hidden scroll-smooth [--scroll-top:0]"
+    >
+      <div className="min-h-screen w-4/5 mx-auto max-w-screen-3xl">
+        <div className="flex items-center min-h-screen">
+          <div className="w-full m-auto space-y-6 text-neutral-700 dark:text-neutral-50">
+            <Banner />
+            <h3 className="text-center text-xl md:text-3xl">
+              Software Engineer from Utrecht
+            </h3>
+          </div>
+        </div>
+
+        <div className="min-h-screen">
+          <Project
+            title="SQUARE REVEAL ANIMATION"
+            href="/work/squarereveal"
+            oldMin={0}
+            newRange={0.2}
+            oldRange={0.75}
+            newMin={0.8}
+          >
+            <div className="overflow-hidden absolute inset-1">
+              <Image
+                src="/ricardo-gomez-angel-5YM26lUicfU-unsplash.jpg"
+                alt="Unsplash picture"
+                className="object-cover object-bottom"
+                fill
+              />
+            </div>
+            <div className="absolute inset-0 grid grid-cols-5 grid-rows-3 [--size:0.5rem] md:[--size:0.75rem] lg:[--size:1rem]">
+              {Array.from({ length: 5 * 3 }).map((_, idx) => (
+                <div
+                  key={idx}
+                  className="relative before:absolute before:inset-2 before:rounded before:shadow-outer dark:text-neutral-500 md:before:inset-3 md:before:rounded-xl lg:before:inset-4 lg:before:rounded-2xl"
+                />
+              ))}
+            </div>
+          </Project>
+        </div>
+        <div className="min-h-screen">
+          <Project
+            title="SQUARE REVEAL ANIMATION"
+            href="/work/squarereveal"
+            oldMin={1}
+            newRange={0.2}
+            oldRange={0.75}
+            newMin={0.8}
+          >
+            <div className="overflow-hidden absolute inset-1">
+              <Image
+                src="/ricardo-gomez-angel-5YM26lUicfU-unsplash.jpg"
+                alt="Unsplash picture"
+                className="object-cover object-bottom"
+                fill
+              />
+            </div>
+            <div className="absolute inset-0 grid grid-cols-5 grid-rows-3 [--size:0.5rem] md:[--size:0.75rem] lg:[--size:1rem]">
+              {Array.from({ length: 5 * 3 }).map((_, idx) => (
+                <div
+                  key={idx}
+                  className="relative before:absolute before:inset-2 before:rounded before:shadow-outer dark:text-neutral-500 md:before:inset-3 md:before:rounded-xl lg:before:inset-4 lg:before:rounded-2xl"
+                />
+              ))}
+            </div>
+          </Project>
         </div>
       </div>
-
-      <div className="min-h-screen">
-        <Project title="SQUARE REVEAL ANIMATION" href="/work/squarereveal">
-          <div className="overflow-hidden absolute inset-1">
-            <Image
-              src="/ricardo-gomez-angel-5YM26lUicfU-unsplash.jpg"
-              alt="Unsplash picture"
-              className="object-cover object-bottom"
-              fill
-            />
-          </div>
-          <div className="absolute inset-0 grid grid-cols-5 grid-rows-3 [--size:0.5rem] md:[--size:0.75rem] lg:[--size:1rem]">
-            {Array.from({ length: 5 * 3 }).map((_, idx) => (
-              <div
-                key={idx}
-                className="relative before:absolute before:inset-2 before:rounded before:shadow-outer dark:text-neutral-500 md:before:inset-3 md:before:rounded-xl lg:before:inset-4 lg:before:rounded-2xl"
-              />
-            ))}
-          </div>
-        </Project>
-      </div>
-    </main>
+    </ScrollContainer>
   );
 }

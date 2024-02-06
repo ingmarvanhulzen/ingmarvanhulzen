@@ -1,7 +1,7 @@
 import Image from "next/image";
 
 import styles from "./styles.module.css";
-import ScrollContainer from "./ScrollContainer";
+import ScrollContainer from "@/components/ScrollContainer";
 
 import PrismCode from "@/components/PrismCode";
 
@@ -48,7 +48,8 @@ function useScrollObserver(interpolate: (element: HTMLElement) => void) {
 export default function Page() {
   return (
     <ScrollContainer
-      className="w-full min-h-screen max-h-screen overflow-auto scroll-smooth"
+      direction="bottom-up"
+      className="w-full min-h-screen max-h-screen overflow-y-auto overflow-x-hidden scroll-smooth"
       style={{
         "--scroll-top": 1,
         "--size": "calc(var(--scroll-top) * .75rem)",
@@ -69,9 +70,9 @@ export default function Page() {
       </div>
       <div className="relative min-h-screen">
         <div className="w-full h-2/3 absolute p-3 z-0">
-          <div className="w-full h-full bg-neutral-50 rounded-xl flex flex-col justify-end p-8 space-y-4">
+          <div className="w-full h-full bg-neutral-50 rounded-xl flex flex-col justify-end p-8 space-y-4 relative overflow-hidden">
             <h1 className="text-6xl text-bold text-neutral-700">
-              SQUARE REVEAL ANIMATION
+              SQUARE REVEAL EFFECT
             </h1>
             <p className="text-3xl text-neutral-500 max-w-3xl">
               An example of the image reveal animation witch uses a scroll
