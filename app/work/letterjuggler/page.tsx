@@ -1,15 +1,7 @@
 import IDE from "@/components/IDE";
+import Code from "@/components/Code";
 import LetterJuggler from "@/components/LetterJuggler";
 import Terminal from "@/components/Terminal";
-import { ReactNode } from "react";
-
-function Code({ children }: { children: ReactNode }) {
-  return (
-    <code className="inline-block px-2 text-neutral-400 bg-neutral-900 rounded border border-neutral-800 text-xl leading-8">
-      {children}
-    </code>
-  );
-}
 
 export default function Page() {
   return (

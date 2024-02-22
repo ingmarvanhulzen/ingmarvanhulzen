@@ -3,14 +3,14 @@ import { BiChevronRight, BiCopy, BiTerminal } from "react-icons/bi";
 
 export default function Terminal({ children }: { children: ReactNode }) {
   return (
-    <div className="bg-neutral-950 rounded border border-neutral-800 text-neutral-400">
+    <div className="rounded border border-neutral-800 text-neutral-600 bg-neutral-200 dark:text-neutral-400 dark:bg-neutral-950">
       <div className="flex text-xl border-b border-neutral-800 pl-2 justify-between">
         <div className="inline-flex gap-2 p-2 items-center rounded-t">
           <BiTerminal />
           <span>terminal</span>
         </div>
         <button
-          className="border-l border-neutral-800 px-4 hover:bg-neutral-800"
+          className="border-l border-neutral-800 px-4 hover:bg-neutral-300 dark:hover:bg-neutral-800"
           aria-label="Copy"
         >
           <BiCopy />

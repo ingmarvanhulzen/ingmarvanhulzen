@@ -2,6 +2,7 @@ import { ReactNode } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import ScrollContainer from "@/components/ScrollContainer";
+import LetterJuggler from "@/components/LetterJuggler";
 
 function Banner() {
   return (
@@ -77,6 +78,7 @@ function Project({
   oldMin,
   newRange,
   oldRange,
+  hideTitle,
 }: {
   href: string;
   title: string;
@@ -85,6 +87,7 @@ function Project({
   oldMin: number;
   newRange: number;
   oldRange: number;
+  hideTitle?: boolean;
 }) {
   return (
     <Link
@@ -104,11 +107,13 @@ function Project({
       }
     >
       {children}
-      <div className="absolute inset-0 flex items-center justify-center">
-        <h4 className="text-bold text-neutral-50 text-2xl md:text-4xl lg:text-5xl">
-          {title}
-        </h4>
-      </div>
+      {!hideTitle && (
+        <div className="absolute inset-0 flex items-center justify-center">
+          <h4 className="text-bold text-neutral-50 text-2xl md:text-4xl lg:text-5xl">
+            {title}
+          </h4>
+        </div>
+      )}
     </Link>
   );
 }
@@ -159,6 +164,7 @@ export default function Page() {
         </div>
         <div className="min-h-screen">
           <Project
+            hideTitle
             title="LETTER JUGGLER"
             href="/work/letterjuggler"
             oldMin={1}
@@ -166,11 +172,15 @@ export default function Page() {
             oldRange={0.75}
             newMin={0.8}
           >
-            <div className="absolute inset-0 flex justify-center items-center">
-              <p className="text-3xl text-neutral-700 dark:text-neutral-50">
-                Some easy to use javascript function to randomly animate
-                individual characters from any given html container element.
-              </p>
+            <div className="absolute inset-0 flex justify-center items-center p-4">
+              <div className="max-w-4xl">
+                <LetterJuggler className="text-neutral-700 leading-normal text-2xl md:text-4xl lg:text-5xl">
+                  <span className="text-neutral-400">Letter Juggler</span>
+                  <br />
+                  Some easy to use javascript function to randomly animate
+                  individual characters from any given html container element.
+                </LetterJuggler>
+              </div>
             </div>
           </Project>
         </div>

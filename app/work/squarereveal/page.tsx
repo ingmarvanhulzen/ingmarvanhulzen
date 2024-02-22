@@ -1,9 +1,12 @@
 import Image from "next/image";
 
+import Code from "@/components/Code";
+
 import styles from "./styles.module.css";
 import ScrollContainer from "@/components/ScrollContainer";
 
 import PrismCode from "@/components/PrismCode";
+import Terminal from "@/components/Terminal";
 
 const CODEBLOCKS = {
   resetGlobalCSS: `
@@ -45,45 +48,141 @@ function useScrollObserver(interpolate: (element: HTMLElement) => void) {
 }`,
 };
 
+function Href({ children }: { children: string }) {
+  return (
+    <a
+      href={`https://www.${children}`}
+      target="_blank"
+      className="text-neutral-400"
+    >
+      {children}
+    </a>
+  );
+}
+
 export default function Page() {
   return (
     <ScrollContainer
-      direction="bottom-up"
-      className="w-full min-h-screen max-h-screen overflow-y-auto overflow-x-hidden scroll-smooth"
+      direction="top-down"
+      className="min-h-screen max-h-screen overflow-y-auto overflow-x-hidden scroll-smooth"
       style={{
-        "--scroll-top": 1,
-        "--size": "calc(var(--scroll-top) * .75rem)",
+        "--scroll-top": 0,
+        "--size": "calc(max(0, 1 - var(--scroll-top)) * .75rem)",
+        "--image-opacity": "max(0, calc(1 - (var(--scroll-top) - 1))",
       }}
     >
       <div className="fixed inset-0 -z-10">
-        <Image
-          src="/ricardo-gomez-angel-5YM26lUicfU-unsplash.jpg"
-          alt="Unsplash picture"
-          className="object-cover object-bottom"
-          fill
-        />
-        <div className="absolute inset-0 grid grid-cols-5 grid-rows-3 text-neutral-950">
+        <div className="overflow-hidden absolute inset-0">
+          <Image
+            src="/ricardo-gomez-angel-5YM26lUicfU-unsplash.jpg"
+            alt="Unsplash picture"
+            className="object-cover object-bottom"
+            style={{ opacity: "var(--image-opacity)" }}
+            fill
+          />
+        </div>
+
+        <div className="absolute inset-0 grid grid-cols-5 grid-rows-3 text-neutral-50 dark:text-neutral-950">
           {Array.from({ length: 5 * 3 }).map((_, idx) => (
             <div key={idx} className={styles.Square} />
           ))}
         </div>
       </div>
-      <div className="relative min-h-screen">
-        <div className="w-full h-2/3 absolute p-3 z-0">
-          <div className="w-full h-full bg-neutral-50 rounded-xl flex flex-col justify-end p-8 space-y-4 relative overflow-hidden">
-            <h1 className="text-6xl text-bold text-neutral-700">
-              SQUARE REVEAL EFFECT
-            </h1>
-            <p className="text-3xl text-neutral-500 max-w-3xl">
-              An example of the image reveal animation witch uses a scroll
-              observer to set the CSS variables. For the inferted rounded
-              corners i{"'"}ve used 4 box-shadows and an overflow-hidden tricks.
+      <div className="min-h-screen"></div>
+      <div className="min-h-screen"></div>
+
+      <div className="min-h-screen space-y-56 pt-56 bg-neutral-50 dark:bg-neutral-950">
+        <div className="max-w-sm md:max-w-2xl lg:max-w-screen-lg mx-auto">
+          <div className="relative flex flex-col lg:flex-row">
+            <h3 className="text-neutral-400 text-3xl w-60 shrink-0 mb-8">
+              Background
+            </h3>
+            <div className="space-y-8">
+              <p className="text-2xl">
+                After browsing on one of my favorite websites{" "}
+                <Href>awwwards.com</Href> I noticed that many websites use
+                scroll animations to create stunning effects, but some websites
+                use so many resources that the animation stutters.
+              </p>
+              <p className="text-2xl">
+                When I came across a website from <Href>depo.studio</Href> I saw
+                a nice image reveal effect on their about page. So I thought to
+                challenge myself and try to implement it. And make sure that the
+                animation runs smooth on any device.
+              </p>
+              <p className="text-2xl">
+                For this project I wanted to use{" "}
+                <span className="text-neutral-400">CSS</span> as much as
+                possible for performance reasons and managed to only use the{" "}
+                <span className="text-neutral-400">Javascript</span> to set a{" "}
+                <Code>--scroll-top</Code> variable which I will use to animate
+                the squares on the screen.
+              </p>
+            </div>
+            <span className="left-0 bottom-0 mt-6 text-xl lg:absolute">
+              10-01-2024
+            </span>
+          </div>
+        </div>
+
+        <div className="max-w-sm md:max-w-2xl lg:max-w-screen-lg mx-auto">
+          <div className="space-y-8">
+            <h3 className="text-neutral-400 text-3xl">Tutorial</h3>
+            <p className="text-2xl">
+              Let{"'"}s start by initializing a new{" "}
+              <span className="text-neutral-400">Next.js</span> application.
+              <br />
+              You can do that by inserting the following npx command in your
+              terminal by choice.
+              <br />
+            </p>
+            <p className="text-2xl">
+              After initialization we can delete everything in the{" "}
+              <Code>page.tsx</Code>, <Code>globals.css</Code>,{" "}
+              <Code>page.module.css</Code> to start with a nice blank
+              application.
             </p>
           </div>
         </div>
+
+        <div className="max-w-screen-xl mx-auto">
+          <Terminal>
+            <Terminal.Item>npx create-next-app@latest</Terminal.Item>
+            <Terminal.Item>
+              What is your project named?{" "}
+              <span className="text-neutral-500">demo</span>
+            </Terminal.Item>
+            <Terminal.Item>
+              Would you like to use TypeScript?{" "}
+              <span className="text-neutral-500">Yes</span>
+            </Terminal.Item>
+            <Terminal.Item>
+              Would you like to use ESLint?{" "}
+              <span className="text-neutral-500">Yes</span>
+            </Terminal.Item>
+            <Terminal.Item>
+              Would you like to use Tailwind CSS?{" "}
+              <span className="text-neutral-500">No</span>
+            </Terminal.Item>
+            <Terminal.Item>
+              Would you like to use `src/` directory?{" "}
+              <span className="text-neutral-500">No</span>
+            </Terminal.Item>
+            <Terminal.Item>
+              Would you like to use App Router? (recommended){" "}
+              <span className="text-neutral-500">Yes</span>
+            </Terminal.Item>
+            <Terminal.Item>
+              Would you like to customize the default import alias (@/*)?){" "}
+              <span className="text-neutral-500">No</span>
+            </Terminal.Item>
+          </Terminal>
+        </div>
+
+        <div />
       </div>
-      <div className="min-h-screen"></div>
-      <div className="min-h-screen bg-neutral-950 rounded-t-xl">
+
+      {/* <div className="min-h-screen bg-neutral-950">
         <div className="max-w-screen-2xl mx-auto pt-8 space-y-8">
           <div className="grid grid-cols-2">
             <div className="max-w-xl space-y-4 min-h-96">
@@ -137,7 +236,7 @@ export default function Page() {
             <PrismCode language="css" code={CODEBLOCKS.section2} />
           </div>
         </div>
-      </div>
+      </div> */}
     </ScrollContainer>
   );
 }

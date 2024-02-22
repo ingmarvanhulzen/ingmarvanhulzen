@@ -7,9 +7,6 @@
 .operator, .rule {
     @apply text-purple-400;
 }
-.punctuation {
-    @apply text-neutral-200;
-}
 
 .tag {
     @apply text-red-500;
@@ -21,11 +18,11 @@
     @apply text-green-400;
 }
 
-.tag .punctuation {
+.punctuation {
     @apply text-inherit;
 }
-.tag .punctuation.attr-equals {
-    @apply text-neutral-200;
+.punctuation.attr-equals {
+    @apply text-neutral-600 dark:text-neutral-200;
 }
 .comment {
     @apply text-neutral-700;
