@@ -98,8 +98,7 @@ export default function Page() {
 
             <PrismCode
               language="bash"
-              filename="terminal"
-              code="npx create-next-app@latest --ts --eslint --app --src-dir --no-tailwind"
+              code="npx create-next-app@latest --ts --eslint --app --no-src-dir --no-tailwind --import-alias '@/*'"
             />
           </div>
 
@@ -116,11 +115,7 @@ export default function Page() {
               </ol>
             </div>
             <div>
-              <PrismCode
-                language="css"
-                filename="src/globals.css"
-                code={CODEBLOCKS.resetGlobalCSS}
-              />
+              <PrismCode language="css" code={CODEBLOCKS.resetGlobalCSS} />
             </div>
           </div>
 
@@ -132,22 +127,14 @@ export default function Page() {
                 a random full screen image.
               </p>
             </div>
-            <PrismCode
-              language="typescript"
-              filename="src/page.tsx"
-              code={CODEBLOCKS.section1}
-            />
+            <PrismCode language="typescript" code={CODEBLOCKS.section1} />
           </div>
 
           <div className="grid grid-cols-2">
             <div className="max-w-xl space-y-4">
               <h3 className="text-3xl text-neutral-50">Section 3</h3>
             </div>
-            <PrismCode
-              language="css"
-              filename="styles.css"
-              code={CODEBLOCKS.section2}
-            />
+            <PrismCode language="css" code={CODEBLOCKS.section2} />
           </div>
         </div>
       </div>

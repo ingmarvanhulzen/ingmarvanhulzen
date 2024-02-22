@@ -1,21 +1,32 @@
-code[class*="language-"],
-pre[class*="language-"] {
-    @apply text-neutral-300;
-}
-
 .function { 
     @apply text-blue-400;
 }
 .keyword {
     @apply text-purple-500;
 }
-.operator {
+.operator, .rule {
     @apply text-purple-400;
 }
+.punctuation {
+    @apply text-neutral-200;
+}
 
-.selector {
+.tag {
+    @apply text-red-500;
+}
+.selector, .attr-name, .number {
     @apply text-orange-400;
 }
-.property {
+.property, .attr-value, .string {
     @apply text-green-400;
+}
+
+.tag .punctuation {
+    @apply text-inherit;
+}
+.tag .punctuation.attr-equals {
+    @apply text-neutral-200;
+}
+.comment {
+    @apply text-neutral-700;
 }

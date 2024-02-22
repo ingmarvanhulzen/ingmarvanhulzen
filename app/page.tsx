@@ -89,7 +89,8 @@ function Project({
   return (
     <Link
       href={href}
-      className="relative block rounded-2xl aspect-video overflow-hidden will-change-transform"
+      title={title}
+      className="relative block rounded-2xl aspect-video overflow-hidden will-change-transform bg-neutral-700 dark:bg-neutral-900"
       style={
         {
           "--oldMin": oldMin, // start after 0.25
@@ -103,7 +104,7 @@ function Project({
       }
     >
       {children}
-      <div className="absolute inset-0 flex items-center justify-center bg-black/75">
+      <div className="absolute inset-0 flex items-center justify-center">
         <h4 className="text-bold text-neutral-50 text-2xl md:text-4xl lg:text-5xl">
           {title}
         </h4>
@@ -144,12 +145,13 @@ export default function Page() {
                 className="object-cover object-bottom"
                 fill
               />
+              <div className="absolute inset-0 bg-black/75" />
             </div>
             <div className="absolute inset-0 grid grid-cols-5 grid-rows-3 [--size:0.5rem] md:[--size:0.75rem] lg:[--size:1rem]">
               {Array.from({ length: 5 * 3 }).map((_, idx) => (
                 <div
                   key={idx}
-                  className="relative before:absolute before:inset-2 before:rounded before:shadow-outer dark:text-neutral-500 md:before:inset-3 md:before:rounded-xl lg:before:inset-4 lg:before:rounded-2xl"
+                  className="relative before:absolute before:inset-2 before:rounded before:shadow-outer text-neutral-700 dark:text-neutral-900 md:before:inset-3 md:before:rounded-xl lg:before:inset-4 lg:before:rounded-2xl"
                 />
               ))}
             </div>
@@ -157,28 +159,18 @@ export default function Page() {
         </div>
         <div className="min-h-screen">
           <Project
-            title="SQUARE REVEAL ANIMATION"
-            href="/work/squarereveal"
+            title="LETTER JUGGLER"
+            href="/work/letterjuggler"
             oldMin={1}
             newRange={0.2}
             oldRange={0.75}
             newMin={0.8}
           >
-            <div className="overflow-hidden absolute inset-1">
-              <Image
-                src="/ricardo-gomez-angel-5YM26lUicfU-unsplash.jpg"
-                alt="Unsplash picture"
-                className="object-cover object-bottom"
-                fill
-              />
-            </div>
-            <div className="absolute inset-0 grid grid-cols-5 grid-rows-3 [--size:0.5rem] md:[--size:0.75rem] lg:[--size:1rem]">
-              {Array.from({ length: 5 * 3 }).map((_, idx) => (
-                <div
-                  key={idx}
-                  className="relative before:absolute before:inset-2 before:rounded before:shadow-outer dark:text-neutral-500 md:before:inset-3 md:before:rounded-xl lg:before:inset-4 lg:before:rounded-2xl"
-                />
-              ))}
+            <div className="absolute inset-0 flex justify-center items-center">
+              <p className="text-3xl text-neutral-700 dark:text-neutral-50">
+                Some easy to use javascript function to randomly animate
+                individual characters from any given html container element.
+              </p>
             </div>
           </Project>
         </div>

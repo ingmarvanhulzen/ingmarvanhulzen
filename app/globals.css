@@ -24,3 +24,9 @@
   from { stroke-dashoffset: 100; }
   to { stroke-dashoffset: 0; }
 }
+
+@layer base {
+  body {
+    @apply text-neutral-700;
+  }
+}

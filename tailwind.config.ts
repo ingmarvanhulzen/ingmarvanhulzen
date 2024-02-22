@@ -34,6 +34,9 @@ const config: Config = {
         outer:
           "calc(-1 * var(--size)) calc(-1 * var(--size)) 0 var(--size), var(--size) calc(-1 * var(--size)) 0 var(--size), var(--size) var(--size) 0 var(--size), calc(-1 * var(--size)) var(--size) 0 var(--size);",
       },
+      listStyleType: {
+        square: "square",
+      },
     },
   },
 };
