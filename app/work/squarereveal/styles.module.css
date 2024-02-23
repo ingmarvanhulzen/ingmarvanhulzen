@@ -14,3 +14,13 @@
         var(--size) var(--size) 0 var(--size), 
         calc(-1 * var(--size)) var(--size) 0 var(--size);
 }
+
+.Image {
+    --oldValue: var(--scroll-top); /* 0 to 2 */
+    --oldMin: 1; /* start after */
+    --newRange: 1; /* target value */
+    --oldRange: 0.75; /* duration */
+    --newMin: 0; /* offset */
+    opacity: calc(1 - (var(--oldValue) - var(--oldMin)) * var(--newRange) / var(--oldRange) + var(--newMin));
+
+}

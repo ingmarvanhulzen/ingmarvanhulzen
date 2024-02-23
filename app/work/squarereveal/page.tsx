@@ -68,7 +68,6 @@ export default function Page() {
       style={{
         "--scroll-top": 0,
         "--size": "calc(max(0, 1 - var(--scroll-top)) * .75rem)",
-        "--image-opacity": "max(0, calc(1 - (var(--scroll-top) - 1))",
       }}
     >
       <div className="fixed inset-0 -z-10">
@@ -76,8 +75,7 @@ export default function Page() {
           <Image
             src="/ricardo-gomez-angel-5YM26lUicfU-unsplash.jpg"
             alt="Unsplash picture"
-            className="object-cover object-bottom"
-            style={{ opacity: "var(--image-opacity)" }}
+            className={`object-cover object-bottom ${styles.Image}`}
             fill
           />
         </div>
