@@ -108,7 +108,7 @@ function Project({
     >
       {children}
       {!hideTitle && (
-        <div className="absolute inset-0 flex items-center justify-center">
+        <div className="absolute inset-0 flex items-center justify-center text-center">
           <h4 className="text-bold text-neutral-50 text-2xl md:text-4xl lg:text-5xl">
             {title}
           </h4>
@@ -164,7 +164,6 @@ export default function Page() {
         </div>
         <div className="min-h-screen">
           <Project
-            hideTitle
             title="LETTER JUGGLER"
             href="/work/letterjuggler"
             oldMin={1}
@@ -172,15 +171,30 @@ export default function Page() {
             oldRange={0.75}
             newMin={0.8}
           >
-            <div className="absolute inset-0 flex justify-center items-center p-4">
-              <div className="max-w-4xl">
-                <LetterJuggler className="text-neutral-700 leading-normal text-2xl md:text-4xl lg:text-5xl">
-                  <span className="text-neutral-400">Letter Juggler</span>
-                  <br />
-                  Some easy to use javascript function to randomly animate
-                  individual characters from any given html container element.
-                </LetterJuggler>
-              </div>
+            <div className="absolute inset-0 px-2">
+              <p className="leading-normal text-justify text-base text-neutral-950 dark:text-neutral-700 sm:text-2xl  md:text-4xl lg:text-5xl">
+                y v n w a h i x y p m y a z k h o y n n m x h v e q d f w v m x
+                a g k z i p o p t l y c s r r n s u d h i h j v m c p o e z m v
+                y z y b a p c v o b h u u m k j r s v r c k d t a x s l j i e x
+                w q e w r p j g x n d z t f s k k o a k s f m m o b n g z d l u
+                j n l o q h a e l n y r y a u g s a a x h m c v q x o u w r p q
+                o z y a n r z u v v m r o r m q d e q v t t c e e u d v q p n r
+                h b q w p s e o q q l z u l i l p v a h u o j g z c m d j a z a
+                n z s l c o o x l m z m o x x w a x y l d x t z w d g v u h t r
+                y p r g h b e a l d a r w n v o a y y a a f q n y x m z j u i s
+                a i k j n d q a w f z j m k j g m y m s x j q e o a r q g x t o
+                z q f w t n m h v u m i y w m g j u r l s o c x n w w g t l p i
+                d z v v t a i k d v s q k p c l q x s k p e w s c x h v s p g d
+                o s j l j c i i d p h b g d l y a n t d o a a i c r a k b c e f
+                k d w c z g t u w h h v v x g j t z p e x q j y a s y y n u l u
+                e w u x v o h q p c l u y s c j r l a o l e o x n y j e c p i h
+                m e p g k o m x x f q b v l j l u e w p h y w p d m y k b v k h
+                e m v m z t l j i h v u c v m b m h r u a z w c i m m r g z u x
+                r b s a e n x u n p h c o e y k e d d x i v w w n w s w e v a w
+                f n v p x p h l h r j t w k s s a q p h e x i a e b p k d d n g
+                x d y j m w s q j a x t m f h q t p j w f x a a f v i b w u s i
+                a x r c t h l w n i f p y g k i y p t u b p u s k k b r c v p m
+              </p>
             </div>
           </Project>
         </div>

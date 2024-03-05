@@ -89,7 +89,7 @@ export default function Page() {
       <div className="min-h-screen"></div>
       <div className="min-h-screen"></div>
 
-      <div className="min-h-screen space-y-56 pt-56 bg-neutral-50 dark:bg-neutral-950">
+      <div className="px-4 min-h-screen space-y-56 pt-56 bg-neutral-50 dark:bg-neutral-950">
         <div className="max-w-sm md:max-w-2xl lg:max-w-screen-lg mx-auto">
           <div className="relative flex flex-col lg:flex-row">
             <h3 className="text-neutral-400 text-3xl w-60 shrink-0 mb-8">
