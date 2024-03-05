@@ -63,15 +63,12 @@ jobs:
     steps:
       - name: SSH Deploy
         uses: appleboy/ssh-action@master
-        env:
-          USERNAME: ${{ secrets.USERNAME }}
         with:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }} 
-          envs: USERNAME
           script: |
-            cd /var/www/vhost/$USERNAME/$USERNAME
+            cd /var/www/vhost/$(whoami)/$(whoami)
             git pull
             npm install
             npm build
