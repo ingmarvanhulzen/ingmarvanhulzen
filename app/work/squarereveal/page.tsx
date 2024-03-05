@@ -5,46 +5,7 @@ import Code from "@/components/Code";
 import styles from "./styles.module.css";
 import ScrollContainer from "@/components/ScrollContainer";
 import Terminal from "@/components/Terminal";
-
-const CODEBLOCKS = {
-  resetGlobalCSS: `
-body {
-  margin: 0;
-}
-`,
-  initialPage: `
-`,
-  section1: `
-function useScrollObserver(interpolate: (element: HTMLElement) => void) {
-  const containerRef = useRef(null);
-
-  useLayoutEffect(() => {
-    if (!containerRef?.current) {
-      return;
-    }
-
-    const container: HTMLElement = containerRef!.current;
-
-    const listner = () => interpolate(container);
-
-    container.addEventListener("scroll", listner);
-
-    listner();
-
-    return () => {
-      container!.removeEventListener("scroll", listner);
-    };
-  }, [containerRef, interpolate]);
-
-  return containerRef;
-}`,
-  section2: `
-.GridItem {
-  position: absolute;
-  inset: 5rem;
-  box-shadow: 10px;
-}`,
-};
+import IDE from "@/components/IDE";
 
 function Href({ children }: { children: string }) {
   return (
@@ -62,10 +23,7 @@ export default function Page() {
   return (
     <ScrollContainer
       direction="top-down"
-      className="min-h-screen max-h-screen overflow-y-auto overflow-x-hidden scroll-smooth [--scroll-top:0]"
-      style={{
-        "--size": "calc(max(0, 1 - var(--scroll-top)) * .75rem)",
-      }}
+      className={`min-h-screen max-h-screen overflow-y-auto overflow-x-hidden scroll-smooth ${styles.Container}`}
     >
       <div className="fixed inset-0 -z-10">
         <div className="overflow-hidden absolute inset-0">
@@ -108,7 +66,7 @@ export default function Page() {
               <p className="text-2xl">
                 For this project I wanted to use{" "}
                 <span className="text-neutral-400">CSS</span> as much as
-                possible for performance reasons and managed to only use the{" "}
+                possible for performance reasons and managed to only use{" "}
                 <span className="text-neutral-400">Javascript</span> to set a{" "}
                 <Code>--scroll-top</Code> variable which I will use to animate
                 the squares on the screen.
@@ -174,6 +132,369 @@ export default function Page() {
           </Terminal>
         </div>
 
+        <div className="max-w-sm md:max-w-2xl lg:max-w-screen-lg mx-auto">
+          <div className="space-y-8">
+            <h3 className="text-neutral-400 text-3xl">Basics</h3>
+            <p className="text-2xl">
+              We should start by creating a basic{" "}
+              <span className="text-neutral-400">HTML</span> structure where the
+              main viewport contains a section with a height of{" "}
+              <Code>200vh</Code> so that we can scroll. Within the section there
+              will be a fixed div which scroll with the section.
+            </p>
+            <p className="text-2xl">
+              Our grid will be rendered over our image which uses{" "}
+              <Href>picsum.photos</Href> as image placeholder and contains three
+              rows, note that the grid items are not visible, we will style te
+              grid items later on.
+            </p>
+          </div>
+        </div>
+
+        <div className="max-w-screen-xl mx-auto">
+          <IDE
+            files={[
+              {
+                name: "app/page.tsx",
+                language: "tsx",
+                contents: `export default function Home() {
+  return (
+    <main>
+      <div className="section">
+        <div className="fixed">
+          {/* I use picsum for a random image but you could use youre own image here */}
+          <img
+            src="https://picsum.photos/seed/100/1920/1080"
+            className="image"
+          />
+
+          <div className="grid">
+            {/* Simple function to generate 15 divs */}
+            {Array.from({ length: 5 * 3 }).map((_, idx) => (
+              <div key={idx} className="grid-item" />
+            ))}
+          </div>
+        </div>
+      </div>
+    </main>
+  );
+}`,
+              },
+              {
+                name: "app/globals.css",
+                language: "css",
+                contents: `html, body {
+  margin: 0;
+  padding: 0;
+}
+
+/* The main viewport */
+main {
+  max-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* The first seciton so we can scroll the page */
+.section {
+  height: 200vh;
+}
+
+/* Here we create a fixed window so the image and grid stays in place when we scroll */
+.fixed {
+  position: sticky;
+  height: 100vh;
+  top: 0;
+}
+
+/* Scale image to full screen and scale properly */
+.image {
+  position: absolute;
+  inset: 0;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* The grid which should hold the squares */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  height: 100%;
+}
+
+/* Grid should be relative so the pseudo-element is absolute to there grid item and ignore overlaying content */
+.grid-item {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Some basic grid item with a default value for --size */
+.grid-item::before {
+  --size: 1rem;
+  content: "";
+  position: absolute;
+  inset: var(--size);
+}`,
+              },
+            ]}
+          />
+        </div>
+
+        <div className="max-w-sm md:max-w-2xl lg:max-w-screen-lg mx-auto">
+          <div className="space-y-8">
+            <h3 className="text-neutral-400 text-3xl">Inverse corners</h3>
+            <p className="text-2xl">
+              Unfortunately within <span className="text-neutral-400">CSS</span>{" "}
+              there is no easy way to to get inverse corners on a div, but there
+              is a way to do it. I{"'"}ve used multiple <Code>box-shadows</Code>{" "}
+              without a blur and overflow hidden. So let{"'"}s say you have a
+              div with a corner-radius of 10px and you want a inverse corner on
+              the top left you could add{" "}
+              <Code>box-shadow: -10px -10px 0px;</Code> and luckily for us
+              box-shadow supports multiple entries so for all the corners it is
+              as easy as repeating the logic.
+            </p>
+          </div>
+        </div>
+
+        <div className="max-w-screen-xl mx-auto">
+          <IDE
+            files={[
+              {
+                name: "app/globals.css",
+                language: "css",
+                contents: `html, body {
+  margin: 0;
+  padding: 0;
+}
+
+/* The main viewport */
+main {
+  max-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* The first seciton so we can scroll the page */
+.section {
+  height: 200vh;
+}
+
+/* Here we create a fixed window so the image and grid stays in place when we scroll */
+.fixed {
+  position: sticky;
+  height: 100vh;
+  top: 0;
+}
+
+/* Scale image to full screen and scale properly */
+.image {
+  position: absolute;
+  inset: 0;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* The grid which should hold the squares */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  height: 100%;
+}
+
+/* Grid should be relative so the pseudo-element is absolute to there grid item and ignore overlaying content */
+.grid-item {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Some basic grid item with a default value for --size */
+.grid-item::before {
+  --size: 1rem;
+  content: "";
+  position: absolute;
+  inset: var(--size);
+  border-radius: var(--size);
+  box-shadow: 
+        calc(-1 * var(--size)) calc(-1 * var(--size)) 0 var(--size), /* top-left -1rem -1rem 0 1rem */
+        var(--size) calc(-1 * var(--size)) 0 var(--size), /* top-right 1rem -1rem 0 1rem */
+        var(--size) var(--size) 0 var(--size), /* bottom-right 1rem 1rem 0 1rem */
+        calc(-1 * var(--size)) var(--size) 0 var(--size); /* bottom-left -1rem 1rem 0 1rem */
+}`,
+              },
+            ]}
+          />
+        </div>
+
+        <div className="max-w-sm md:max-w-2xl lg:max-w-screen-lg mx-auto">
+          <div className="space-y-8">
+            <h3 className="text-neutral-400 text-3xl">The animation</h3>
+            <p className="text-2xl">
+              Now let{"'"}s create the animation! We want to change the{" "}
+              <Code>--size</Code> based on our scroll position. If we are a the
+              top of our page the <Code>--size</Code> should be{" "}
+              <span className="text-neutral-400">1rem</span> and after{" "}
+              <span className="text-neutral-400">100vh</span> it should be zero
+              so the image is completely visible for another{" "}
+              <span className="text-neutral-400">100vh</span>.
+            </p>
+            <p className="text-2xl">
+              To track our scroll position i{"'"}ve created a custom{" "}
+              <span className="text-neutral-400">React</span> hook which ads
+              scroll event listeners to a reference container. With the
+              interpolate method I can apply my own logic to translate the
+              scroll position into variables.
+            </p>
+          </div>
+        </div>
+
+        <div className="max-w-screen-xl mx-auto">
+          <IDE
+            files={[
+              {
+                name: "lib/useScrollObserver.tsx",
+                language: "typescript",
+                contents: `import { useLayoutEffect, useRef } from "react";
+
+/*
+  * This function will add "scroll" event listeners to it's given container
+  * and calls the given interpolate method when te element scrolls
+  */
+function useScrollObserver(interpolate: (element: HTMLElement) => void) {
+  const containerRef = useRef(null);
+
+  useLayoutEffect(() => {
+    // return if container is not set
+    if (!containerRef?.current) {
+      return;
+    }
+
+    // grep current container as HTMLElement
+    const container: HTMLElement = containerRef!.current;
+
+    // bind interpolate method with current container
+    const listener = () => interpolate(container);
+
+    // add "scroll" listener
+    container.addEventListener("scroll", listener);
+
+    // call listener on component mount
+    listener();
+
+    return () => {
+      // remove listener on component unmount
+      container!.removeEventListener("scroll", listener);
+    };
+  }, [containerRef, interpolate]);
+
+  // return target container reference
+  return containerRef;
+}
+
+export default useScrollObserver;`,
+              },
+              {
+                name: "app/page.tsx",
+                language: "tsx",
+                contents: `"use client";
+import useScrollObserver from "@/lib/useScrollObserver";
+
+export default function Home() {
+  const ref = useScrollObserver((element) => {
+    element.style.setProperty(
+      "--scroll-top",
+      // from 1 at the top to 0 at the bottom of the page
+      String(Math.max(0, 1 - (1 / element.clientHeight) * element.scrollTop))
+    );
+  });
+
+  return (
+    <main ref={ref}>
+      <div className="section">
+        <div className="fixed">
+          {/* I use picsum for a random image but you could use youre own image here */}
+          <img
+            src="https://picsum.photos/seed/100/1920/1080"
+            className="image"
+          />
+
+          <div className="grid">
+            {/* Simple function to generate 15 divs */}
+            {Array.from({ length: 5 * 3 }).map((_, idx) => (
+              <div key={idx} className="grid-item" />
+            ))}
+          </div>
+        </div>
+      </div>
+    </main>
+  );
+}`,
+              },
+              {
+                name: "app/globals.css",
+                language: "css",
+                contents: `html, body {
+  margin: 0;
+  padding: 0;
+}
+
+/* The main viewport */
+main {
+  max-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* The first seciton so we can scroll the page */
+.section {
+  height: 200vh;
+}
+
+/* Here we create a fixed window so the image and grid stays in place when we scroll */
+.fixed {
+  position: sticky;
+  height: 100vh;
+  top: 0;
+}
+
+/* Scale image to full screen and scale properly */
+.image {
+  position: absolute;
+  inset: 0;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* The grid which should hold the squares */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  height: 100%;
+}
+
+/* Grid should be relative so the pseudo-element is absolute to there grid item and ignore overlaying content */
+.grid-item {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Some basic grid item with a default value for --size */
+.grid-item::before {
+  --size: calc(1rem * var(--scroll-top, 1));
+  content: "";
+  position: absolute;
+  inset: var(--size);
+  border-radius: var(--size);
+  box-shadow: 
+        calc(-1 * var(--size)) calc(-1 * var(--size)) 0 var(--size), /* top-left -1rem -1rem 0 1rem */
+        var(--size) calc(-1 * var(--size)) 0 var(--size), /* top-right 1rem -1rem 0 1rem */
+        var(--size) var(--size) 0 var(--size), /* bottom-right 1rem 1rem 0 1rem */
+        calc(-1 * var(--size)) var(--size) 0 var(--size); /* bottom-left -1rem 1rem 0 1rem */
+}`,
+              },
+            ]}
+          />
+        </div>
         <div />
       </div>
 

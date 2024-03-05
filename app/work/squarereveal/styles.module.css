@@ -7,7 +7,7 @@
     content: '';
     position: absolute;
     inset: var(--size);
-    border-radius: var(--size) var(--size) var(--size) var(--size);
+    border-radius: var(--size);
     box-shadow: 
         calc(-1 * var(--size)) calc(-1 * var(--size)) 0 var(--size), 
         var(--size) calc(-1 * var(--size)) 0 var(--size), 
@@ -22,5 +22,9 @@
     --oldRange: 0.75; /* duration */
     --newMin: 0; /* offset */
     opacity: calc(1 - (var(--oldValue) - var(--oldMin)) * var(--newRange) / var(--oldRange) + var(--newMin));
+}
 
+.Container {
+    --scroll-top: 0;
+    --size: calc(max(0, 1 - var(--scroll-top)) * .75rem);
 }
