@@ -69,6 +69,7 @@ jobs:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }} 
+          envs: USERNAME
           script: |
             cd /var/www/vhost/$USERNAME/$USERNAME
             git pull
