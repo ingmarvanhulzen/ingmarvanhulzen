@@ -68,9 +68,9 @@ jobs:
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }} 
           script: |
-            cd /var/www/vhosts/ingmarvanhulzen/ingmarvanhulzen/
+            cd /var/www/vhost/$(whoami)/$(whoami)
             git pull
             npm install
-            npm build
+            npm run build
 
       
