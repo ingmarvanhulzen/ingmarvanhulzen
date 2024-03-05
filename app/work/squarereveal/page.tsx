@@ -4,8 +4,6 @@ import Code from "@/components/Code";
 
 import styles from "./styles.module.css";
 import ScrollContainer from "@/components/ScrollContainer";
-
-import PrismCode from "@/components/PrismCode";
 import Terminal from "@/components/Terminal";
 
 const CODEBLOCKS = {
@@ -64,9 +62,8 @@ export default function Page() {
   return (
     <ScrollContainer
       direction="top-down"
-      className="min-h-screen max-h-screen overflow-y-auto overflow-x-hidden scroll-smooth"
+      className="min-h-screen max-h-screen overflow-y-auto overflow-x-hidden scroll-smooth [--scroll-top:0]"
       style={{
-        "--scroll-top": 0,
         "--size": "calc(max(0, 1 - var(--scroll-top)) * .75rem)",
       }}
     >

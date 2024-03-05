@@ -5,7 +5,7 @@ import Terminal from "@/components/Terminal";
 
 export default function Page() {
   return (
-    <main>
+    <main className="min-h-screen max-h-screen overflow-y-auto overflow-x-hidden scroll-smooth">
       <div className="px-4 min-h-screen flex items-center justify-center">
         <div className="max-w-sm md:max-w-2xl lg:max-w-screen-lg">
           <LetterJuggler className="text-3xl lg:text-5xl text-neutral-700 leading-normal">

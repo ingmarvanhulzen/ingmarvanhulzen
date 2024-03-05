@@ -172,7 +172,7 @@ export default function Page() {
             newMin={0.8}
           >
             <div className="absolute inset-0 px-2">
-              <p className="leading-normal text-justify text-base text-neutral-950 dark:text-neutral-700 sm:text-2xl  md:text-4xl lg:text-5xl">
+              <LetterJuggler className="leading-normal text-justify text-base text-neutral-950 dark:text-neutral-700 sm:text-2xl  md:text-4xl lg:text-5xl">
                 y v n w a h i x y p m y a z k h o y n n m x h v e q d f w v m x
                 a g k z i p o p t l y c s r r n s u d h i h j v m c p o e z m v
                 y z y b a p c v o b h u u m k j r s v r c k d t a x s l j i e x
@@ -194,7 +194,7 @@ export default function Page() {
                 f n v p x p h l h r j t w k s s a q p h e x i a e b p k d d n g
                 x d y j m w s q j a x t m f h q t p j w f x a a f v i b w u s i
                 a x r c t h l w n i f p y g k i y p t u b p u s k k b r c v p m
-              </p>
+              </LetterJuggler>
             </div>
           </Project>
         </div>
