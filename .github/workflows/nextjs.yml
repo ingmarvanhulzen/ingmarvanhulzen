@@ -56,17 +56,21 @@ jobs:
         run: ${{ steps.detect-package-manager.outputs.runner }} next build
 
   deploy:
+    needs: validate
+
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: SSH Deploy
         uses: appleboy/ssh-action@master
+        env:
+          USERNAME: ${{ secrets.USERNAME }}
         with:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }} 
           script: |
-            cd /var/www/vhost/${{ secrets.USERNAME }}/${{ secrets.USERNAME }}
+            cd /var/www/vhost/$(USERNAME)/$(USERNAME)
             git pull
             npm install
             npm build
