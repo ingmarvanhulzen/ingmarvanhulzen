@@ -70,7 +70,7 @@ jobs:
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }} 
           script: |
-            cd /var/www/vhost/$(USERNAME)/$(USERNAME)
+            cd /var/www/vhost/$USERNAME/$USERNAME
             git pull
             npm install
             npm build
