@@ -4,10 +4,10 @@ name: Deployment Workflow
 on:
   push:
     branches:
-      - deploy
+      - main
 
 jobs:
-  deploy:
+  validate:
     runs-on: ubuntu-latest
 
     steps:
@@ -54,17 +54,21 @@ jobs:
         
       - name: Build with Next.js
         run: ${{ steps.detect-package-manager.outputs.runner }} next build
-      
+
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
       - name: SSH Deploy
-        # Use the 'appleboy/ssh-action' action for SSH deployment
         uses: appleboy/ssh-action@master
         with:
-          host: ${{ secrets.HOST }} # Your server's IP address
-          username: ${{ secrets.USERNAME }} # Your server's username
-          key: ${{ secrets.SSH_PRIVATE_KEY }} # Your server's SSH private key
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }} 
           script: |
             cd /var/www/vhost/${{ secrets.USERNAME }}/${{ secrets.USERNAME }}
             git pull
             npm install
-            npm run build
-            pm2 restart ${{ secrets.USERNAME }}
+            npm build
+
+      
