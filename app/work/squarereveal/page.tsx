@@ -494,62 +494,6 @@ main {
         </div>
         <div />
       </div>
-
-      {/* <div className="min-h-screen bg-neutral-950">
-        <div className="max-w-screen-2xl mx-auto pt-8 space-y-8">
-          <div className="grid grid-cols-2">
-            <div className="max-w-xl space-y-4 min-h-96">
-              <h3 className="text-3xl text-neutral-50">Create project</h3>
-              <p className="text-xl text-neutral-50">
-                Let{"'"}s start this tutorial with a fresh{" "}
-                <strong className="text-neutral-500">React</strong> app. You
-                could create a new project through the following{" "}
-                <strong className="text-neutral-500">npx</strong> command.
-              </p>
-            </div>
-
-            <PrismCode
-              language="bash"
-              code="npx create-next-app@latest --ts --eslint --app --no-src-dir --no-tailwind --import-alias '@/*'"
-            />
-          </div>
-
-          <div className="grid grid-cols-2">
-            <div className="max-w-xl space-y-4">
-              <h3 className="text-3xl text-neutral-50">Clean project</h3>
-              <p className="text-xl text-neutral-50">
-                First of all let{"'"}s cleanup the start project so we have a
-                blank slate to work from.
-              </p>
-              <ol>
-                <li>Reset src/globals.css with some basic CSS.</li>
-                <li>Clear src/page.module.css</li>
-              </ol>
-            </div>
-            <div>
-              <PrismCode language="css" code={CODEBLOCKS.resetGlobalCSS} />
-            </div>
-          </div>
-
-          <div className="grid grid-cols-2">
-            <div className="max-w-xl space-y-4">
-              <h3 className="text-3xl text-neutral-50">JSX markup</h3>
-              <p className="text-xl text-neutral-50">
-                Now we define our JSX/html structure we should have two divs and
-                a random full screen image.
-              </p>
-            </div>
-            <PrismCode language="typescript" code={CODEBLOCKS.section1} />
-          </div>
-
-          <div className="grid grid-cols-2">
-            <div className="max-w-xl space-y-4">
-              <h3 className="text-3xl text-neutral-50">Section 3</h3>
-            </div>
-            <PrismCode language="css" code={CODEBLOCKS.section2} />
-          </div>
-        </div>
-      </div> */}
     </ScrollContainer>
   );
 }
