@@ -25,24 +25,21 @@ export default function Page() {
       direction="top-down"
       className={`min-h-screen max-h-screen overflow-y-auto overflow-x-hidden scroll-smooth ${styles.Container}`}
     >
-      <div className="fixed inset-0 -z-10">
-        <div className="overflow-hidden absolute inset-0">
+      <div className="min-h-screen-2">
+        <div className="sticky h-screen top-0">
           <Image
             src="/ricardo-gomez-angel-5YM26lUicfU-unsplash.jpg"
             alt="Unsplash picture"
-            className={`object-cover object-bottom ${styles.Image}`}
+            className={`absolute inset-0 object-cover object-bottom ${styles.Image}`}
             fill
           />
-        </div>
-
-        <div className="absolute inset-0 grid grid-cols-5 grid-rows-3 text-neutral-50 dark:text-neutral-950">
-          {Array.from({ length: 5 * 3 }).map((_, idx) => (
-            <div key={idx} className={styles.Square} />
-          ))}
+          <div className="absolute inset-0 grid grid-cols-5 grid-rows-3 text-neutral-50 dark:text-neutral-950">
+            {Array.from({ length: 5 * 3 }).map((_, idx) => (
+              <div key={idx} className={styles.Square} />
+            ))}
+          </div>
         </div>
       </div>
-      <div className="min-h-screen"></div>
-      <div className="min-h-screen"></div>
 
       <div className="px-4 min-h-screen space-y-56 pt-56 bg-neutral-50 dark:bg-neutral-950">
         <div className="max-w-sm md:max-w-2xl lg:max-w-screen-lg mx-auto">

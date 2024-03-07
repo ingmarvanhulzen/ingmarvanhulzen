@@ -12,6 +12,9 @@ const config: Config = {
       maxWidth: {
         "screen-3xl": "137rem",
       },
+      minHeight: {
+        "screen-2": "200vh",
+      },
       animation: {
         "bottom-to-top": "bottom-to-top 500ms linear both",
         "left-to-right": "left-to-right 3s linear",
