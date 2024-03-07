@@ -1,0 +1,12 @@
+.Spotlight {
+    position: absolute;
+    width: 350px;
+    height: 350px;
+    filter: blur(175px);
+    border-radius: 50%;
+    opacity: 0;
+    transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform;
+    bottom: 0;
+    right: 0;
+}

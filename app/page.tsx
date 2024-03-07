@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import ScrollContainer from "@/components/ScrollContainer";
 import LetterJuggler from "@/components/LetterJuggler";
+import Spotlight from "@/components/Spotlight";
 
 function Banner() {
   return (
@@ -90,31 +91,33 @@ function Project({
   hideTitle?: boolean;
 }) {
   return (
-    <Link
-      href={href}
-      title={title}
-      className="relative block rounded-2xl aspect-video overflow-hidden will-change-transform bg-neutral-700 dark:bg-neutral-900"
-      style={
-        {
-          "--oldMin": oldMin, // start after 0.25
-          "--newRange": newRange, // position we want to animate to
-          "--oldRange": oldRange, // time of animation
-          "--newMin": newMin,
-          "--oldValue":
-            "min(max(var(--scroll-top), var(--oldMin)), var(--oldRange) + var(--oldMin))", // Clamp oldValue <= oldMin + oldRange
-          scale: `calc((var(--oldValue) - var(--oldMin)) * var(--newRange) / var(--oldRange) + var(--newMin))`,
-        } as React.CSSProperties
-      }
-    >
-      {children}
-      {!hideTitle && (
-        <div className="absolute inset-0 flex items-center justify-center text-center">
-          <h4 className="text-bold text-neutral-50 text-2xl md:text-4xl lg:text-5xl">
-            {title}
-          </h4>
-        </div>
-      )}
-    </Link>
+    <Spotlight>
+      <Link
+        href={href}
+        title={title}
+        className="relative block rounded-2xl aspect-video overflow-hidden will-change-transform bg-neutral-700 dark:bg-neutral-900"
+        style={
+          {
+            "--oldMin": oldMin, // start after 0.25
+            "--newRange": newRange, // position we want to animate to
+            "--oldRange": oldRange, // time of animation
+            "--newMin": newMin,
+            "--oldValue":
+              "min(max(var(--scroll-top), var(--oldMin)), var(--oldRange) + var(--oldMin))", // Clamp oldValue <= oldMin + oldRange
+            scale: `calc((var(--oldValue) - var(--oldMin)) * var(--newRange) / var(--oldRange) + var(--newMin))`,
+          } as React.CSSProperties
+        }
+      >
+        {children}
+        {!hideTitle && (
+          <div className="absolute inset-0 flex items-center justify-center text-center">
+            <h4 className="text-bold text-neutral-50 text-2xl md:text-4xl lg:text-5xl">
+              {title}
+            </h4>
+          </div>
+        )}
+      </Link>
+    </Spotlight>
   );
 }
 
