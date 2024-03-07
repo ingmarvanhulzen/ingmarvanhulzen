@@ -37,8 +37,8 @@ export default function IDE({ files }: { files: IDEFile[] }) {
   const [active, setActive] = useState(0);
 
   return (
-    <div className="rounded border border-neutral-800 text-neutral-600 bg-neutral-200 dark:text-neutral-400 dark:bg-neutral-950">
-      <div className="flex text-xl border-b border-neutral-800 pl-2 justify-between">
+    <div className="rounded border border-neutral-400 text-neutral-600 bg-neutral-200 dark:text-neutral-400 dark:bg-neutral-900 dark:border-neutral-800">
+      <div className="flex text-lg border-b border-inherit pl-2 justify-between">
         <div>
           {files.map(({ name, language }, index) => (
             <button
@@ -53,7 +53,7 @@ export default function IDE({ files }: { files: IDEFile[] }) {
         </div>
 
         <button
-          className="border-l border-neutral-800 px-4 hover:bg-neutral-300 dark:hover:bg-neutral-800"
+          className="border-l border-inherit px-4 hover:bg-neutral-300 dark:hover:bg-neutral-800"
           aria-label="Copy"
         >
           <BiCopy />
