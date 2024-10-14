@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import { cn } from "@/lib/utils";
 import "./globals.css";
 import NavBar from "@/components/NavBar";
+import PageTransition from "@/components/PageTransition";
 
 const font = Inter({
   subsets: ["latin"],
@@ -21,9 +22,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={cn(font.className, "bg-neutral-50 dark:bg-neutral-950")}>
-        <NavBar />
-
-        {children}
+        <PageTransition>
+          <NavBar />
+          {children}
+        </PageTransition>
       </body>
     </html>
   );

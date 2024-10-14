@@ -1,29 +1,29 @@
 .function { 
-    @apply text-blue-400;
+    @apply text-cyan-600;
 }
 .keyword {
-    @apply text-purple-500;
+    @apply text-purple-600;
 }
 .operator, .rule {
-    @apply text-purple-400;
+    @apply text-purple-600;
 }
 
 .tag {
-    @apply text-red-500;
+    @apply text-rose-600;
 }
 .selector, .attr-name, .number {
-    @apply text-orange-400;
+    @apply text-orange-600;
 }
 .property, .attr-value, .string {
-    @apply text-green-400;
+    @apply text-orange-600;
 }
 
 .punctuation {
     @apply text-inherit;
 }
 .punctuation.attr-equals {
-    @apply text-neutral-600 dark:text-neutral-200;
+    @apply text-zinc-600 dark:text-zinc-200;
 }
 .comment {
-    @apply text-neutral-700;
+    @apply text-zinc-700;
 }

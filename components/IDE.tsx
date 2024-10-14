@@ -37,13 +37,13 @@ export default function IDE({ files }: { files: IDEFile[] }) {
   const [active, setActive] = useState(0);
 
   return (
-    <div className="rounded border border-neutral-400 text-neutral-600 bg-neutral-200 dark:text-neutral-400 dark:bg-neutral-900 dark:border-neutral-800">
+    <div className="rounded border border-zinc-300 text-zinc-500 bg-zinc-100 dark:text-zinc-400 dark:bg-zinc-900 dark:border-zinc-800">
       <div className="flex text-lg border-b border-inherit pl-2 justify-between">
         <div>
           {files.map(({ name, language }, index) => (
             <button
               key={name}
-              className="inline-flex gap-2 p-2 items-center rounded-t hover:bg-neutral-300 dark:hover:bg-neutral-800"
+              className="inline-flex gap-2 p-2 items-center rounded-t hover:bg-zinc-300 dark:hover:bg-zinc-800"
               onClick={() => setActive(index)}
             >
               <Icon language={language} />
@@ -53,7 +53,7 @@ export default function IDE({ files }: { files: IDEFile[] }) {
         </div>
 
         <button
-          className="border-l border-inherit px-4 hover:bg-neutral-300 dark:hover:bg-neutral-800"
+          className="border-l border-inherit px-4 hover:bg-zinc-300 dark:hover:bg-zinc-800"
           aria-label="Copy"
         >
           <BiCopy />
